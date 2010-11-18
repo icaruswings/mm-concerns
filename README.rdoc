@@ -23,27 +23,6 @@ The ConcernsPlugin is automatically included in all your mongomapper documents.
 All thats left is to split your fat models up at logical breaking points and tell your base models to require the pieces.
 The concerned_with method requires files from subdirectories with the same name as your model
 
-I use this plugin to organize my models like so:
-
-    app/models/
-    |-- ability.rb
-    |-- membership.rb
-    |-- organization
-    |-- organization.rb
-    |-- project.rb
-    |-- project
-    |   |-- associations.rb
-    |   |-- callbacks.rb
-    |   |-- scopes.rb
-    |   `-- validations.rb
-    |-- user.rb
-    |-- user
-        |-- associations.rb
-        |-- authentication.rb
-        |-- scopes.rb
-        `-- validations.rb
-
-
 app/models/user.rb
 
     class User
@@ -73,6 +52,39 @@ app/models/user/scopes.rb
       scope :inactive, where( :active => false )
       scope :for_project, lambda { |project| where( :id => { :$in => project.user_ids } ) }
     end
+
+== Why?
+
+I find this system of organizing my functionality make my codebase much quicker and easier to maintain.
+
+I use this plugin to organize my models like so:
+
+    app/models/
+    |
+    |-- ability.rb
+    |
+    |-- membership.rb
+    |
+    |-- organization.rb
+    |
+    |-- project.rb
+    |
+    |-- project
+    |   |-- associations.rb
+    |   |-- callbacks.rb
+    |   |-- scopes.rb
+    |   `-- validations.rb
+    |
+    |-- user.rb
+    |
+    |-- user
+        |-- associations.rb
+        |-- authentication.rb
+        |-- scopes.rb
+        `-- validations.rb
+
+
+I'm be very interested to hear comments on this system, if this helps you out, or if you have a better way of organizing your code.
 
 
 == Contributing to mm-concerns
