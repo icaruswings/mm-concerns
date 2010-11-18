@@ -20,3 +20,4 @@ module ConcernsPluginAddition
 end
 
 MongoMapper::Document.append_inclusions(ConcernsPluginAddition)
+MongoMapper::EmbeddedDocument.append_inclusions(ConcernsPluginAddition)
