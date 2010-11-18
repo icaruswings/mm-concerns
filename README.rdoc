@@ -18,19 +18,40 @@ Or add it to your Gemfile
 The ConcernsPlugin is automatically included in all your mongomapper documents.
 
 All thats left is to split your fat models up at logical breaking points and tell your base models to require the pieces.
+The concerned_with method requires files from subdirectories with the same name as your model
+
+I use this plugin to organize my models like so:
+
+    app/models/
+    |-- ability.rb
+    |-- membership.rb
+    |-- organization
+    |-- organization.rb
+    |-- project.rb
+    |-- project
+    |   |-- associations.rb
+    |   |-- callbacks.rb
+    |   |-- scopes.rb
+    |   `-- validations.rb
+    |-- user.rb
+    |-- user
+        |-- associations.rb
+        |-- authentication.rb
+        |-- scopes.rb
+        `-- validations.rb
+
 
 app/models/user.rb
 
     class User
       include MongoMapper::Document
+
+      concerned_with :validations, :scopes
       
       key :email, String
       key :first_name, String
       key :last_name, String
-      
       key :active, Boolean, :default => false
-      
-      concerned_with :validation, :scopes
     end
     
 app/models/user/validations.rb
@@ -39,6 +60,7 @@ app/models/user/validations.rb
       validates_presence_of :email
       validates_presence_of :first_name
       validates_presence_of :last_name
+      belongs_to :organization
     end
 
 app/models/user/scopes.rb
@@ -46,6 +68,7 @@ app/models/user/scopes.rb
     class User
       scope :active, where( :active => true )
       scope :inactive, where( :active => false )
+      scope :for_project, lambda { |project| where( :id => { :$in => project.user_ids } ) }
     end
     
 
