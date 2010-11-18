@@ -2,6 +2,9 @@
 
 A very simple mongomapper plugin that lets you organise your models into subdirectories
 
+this code is a modification of code I saw in in [teambox](https://github.com/teambox/teambox)
+https://github.com/teambox/teambox/blob/master/config/initializers/concerns.rb
+
 
 == Usage
 
@@ -70,7 +73,7 @@ app/models/user/scopes.rb
       scope :inactive, where( :active => false )
       scope :for_project, lambda { |project| where( :id => { :$in => project.user_ids } ) }
     end
-    
+
 
 == Contributing to mm-concerns
  
