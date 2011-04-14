@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = %q{mm-concerns}
-  s.version = "1.0.1"
+  s.version = "1.1.0"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Luke Cunningham"]
-  s.date = %q{2011-04-13}
+  s.date = %q{2011-04-14}
   s.description = %q{A very simple mongomapper plugin that lets you organise your models into subdirectories}
   s.email = %q{luke@icaruswings.com}
   s.extra_rdoc_files = [
