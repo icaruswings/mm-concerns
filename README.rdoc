@@ -5,6 +5,9 @@ A very simple mongomapper plugin that lets you organise your models into subdire
 this code is a modification of code I saw in in [teambox](https://github.com/teambox/teambox)
 https://github.com/teambox/teambox/blob/master/config/initializers/concerns.rb
 
+v1.1 is a mongomapper 0.9.0 update to support the new plugin system
+if you are using mongomapper 0.8.x please use version 1.0.1 of the gem
+
 
 == Usage
 
@@ -53,6 +56,7 @@ app/models/user/scopes.rb
       scope :for_project, lambda { |project| where( :id => { :$in => project.user_ids } ) }
     end
 
+
 == Why?
 
 I find this system of organizing my functionality make my codebase much quicker and easier to maintain.
@@ -84,7 +88,7 @@ I use this plugin to organize my models like so:
         `-- validations.rb
 
 
-I'm be very interested to hear comments on this system, if this helps you out, or if you have a better way of organizing your code.
+I'd be very interested to hear comments on this system, if this helps you out, or if you have a better way of organizing your code.
 
 
 == Contributing to mm-concerns
