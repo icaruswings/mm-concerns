@@ -1,4 +1,4 @@
-module MongoMapperConcernsPlugin
+module ConcernsPlugin
   extend ActiveSupport::Concern
   
   module ClassMethods
@@ -14,5 +14,5 @@ module MongoMapperConcernsPlugin
   end
 end
 
-MongoMapper::Document.plugin(MongoMapperConcernsPlugin)
-MongoMapper::EmbeddedDocument.plugin(MongoMapperConcernsPlugin)
+MongoMapper::Document.plugin(ConcernsPlugin)
+MongoMapper::EmbeddedDocument.plugin(ConcernsPlugin)
